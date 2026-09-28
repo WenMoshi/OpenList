@@ -30,7 +30,7 @@ jobs:
           go-version: "1.27.1"
 
       - name: Setup web
-        run: bash build.sh dev web
+        run: bash build.sh lite web
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FRONTEND_REPO: ${{ vars.FRONTEND_REPO }}
