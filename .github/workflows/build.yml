@@ -25,7 +25,7 @@ jobs:
         id: short-sha
 
       - name: Setup Go
-        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7
+        uses: actions/setup-go@b7ad1dad31d06c5925ef5d2fc7ad053ef454303e # v7
         with:
           go-version: "1.27.1"
 
@@ -61,6 +61,11 @@ jobs:
             readelf -l build/openlist | grep "Requesting program interpreter" || true
             exit 1
           fi
+
+      - name: Analyze binary size
+        run: |
+          echo "=== Largest symbols ==="
+          go tool nm -size -sort size build/openlist | head -50
 
       - name: Upload artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
